@@ -23,7 +23,7 @@ const App = () => {
 
   return (
     <>
-      <form>
+      <form onSubmit={onSubmit}>
         <input name="email" type="text" placeholder="Email" required value={email} onChange={onChange}/>
         <input name="password" type="password" placeholder="Password" required value={password} onChange={onChange}/>
         <input type="submit" value="Log In" required />
