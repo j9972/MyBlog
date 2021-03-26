@@ -27,7 +27,7 @@ const App = () => {
         <input name="email" type="text" placeholder="Email" required value={email} onChange={onChange}/>
         <input name="password" type="password" placeholder="Password" required value={password} onChange={onChange}/>
         <input type="submit" value="Log In" required />
-        {error && <span className="authError">{error}</span>}
+        {error && <span >{error}</span>}
       </form>
       <span onClick={toggleAccount}></span>
     </>
