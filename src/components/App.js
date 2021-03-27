@@ -27,7 +27,7 @@ const App = () => {
       <form className="container" onSubmit={onSubmit} >
         <input name="email" type="text" placeholder="Email" className="authInput" required value={email} onChange={onChange}/>
         <input name="password" type="password" placeholder="Password" className="authInput" required value={password} onChange={onChange}/>
-        <input type="submit" value="Log In" required />
+        <input type="submit" value={newAccount ? "Create Account" : "Sign In"} />
         {error && <span className="authError">{error}</span>}
       </form>
       <span onClick={toggleAccount} className="authSwitch"></span>
