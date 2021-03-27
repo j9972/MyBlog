@@ -37,4 +37,6 @@ form {
   max-width: 320px;
   display: flex;
   flex-direction: column;
+  margin-left: 40%;
+  align-items: center;
 }
