@@ -33,7 +33,7 @@ const App = () => {
         <input type="submit" value={newAccount ? "Create Account" : "Sign In"} />
         {error && <span className="authError">{error}</span>}
       </form>
-      <span onClick={toggleAccount} className="authSwitch"></span>
+      <span onClick={toggleAccount} className="authSwitch">{newAccount ? "Sign In" : "Create Account" }</span>
     </>
   );
 }
