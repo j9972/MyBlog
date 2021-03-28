@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+//import AppRouter from 'components/Router';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCode } from "@fortawesome/free-solid-svg-icons";
-//import AppRouter from 'components/Router'
+//import AppRouter from 'components/Router';
 
 const App = () => {
   const [email, setEmail] = useState("");
@@ -36,6 +37,12 @@ const App = () => {
       <span onClick={toggleAccount} className="authSwitch">{newAccount ? "Sign In" : "Create Account" }</span>
     </>
   );
+
+  // return (
+  //   <>
+  //     {init ? (<AppRouter refreshUser={refreshUser} isLoggedIn={Boolean(userObj)} userObj={userObj} />) : ("Initializing...")}
+  //   </>
+  // );
 }
 
 export default App;
