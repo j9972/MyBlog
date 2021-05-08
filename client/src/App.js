@@ -11,9 +11,12 @@ function App() {
     <>
       <div className="navbar">
         <div className="links">
-          <a href="/">Login Page</a>
-          <a href="/mainpage">Main Page</a>
-          <a href="/createpost">Create Post</a>
+          <a href="/">Login Page</a> 
+          {/* loginpage */}
+          <a href="/mainpage">Main Page</a> 
+          {/* post올라간거 보이는 곳 */}
+          <a href="/createpost">Create Post</a> 
+          {/* post 쓰는 페이지 */}
         </div>
       </div>
 
