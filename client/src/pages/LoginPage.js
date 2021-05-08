@@ -6,8 +6,8 @@ export default function LoginPage() {
     const [userId, setUserId] = useState("");
     const [userPassword, setUserPassword] = useState("");
 
-    const submitPost = () => {
-        Axios.post('http://localhost:3000/api/login', 
+    const Login = () => {
+        Axios.post('http://localhost:3000/api/', 
         {
             userId: userId,
             userPassword: userPassword,
@@ -22,7 +22,7 @@ export default function LoginPage() {
                 <label>Password</label>
                 <input type="password" placeholder="password" onChange={(e) => {setUserPassword(e.target.value)}}/>
 
-                <button onClick={submitPost}>Submit Post</button>
+                <button onClick={Login}>Login</button>
             </div> 
         </div>
     )
