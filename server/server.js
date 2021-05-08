@@ -17,8 +17,7 @@ app.post('/api/login', (req,res) => {
     const userId = req.body.userId;
     const userPassword = req.body.userPassword;
     
-
-    db.query("INSERT INTO loginDB (userId, userPassword) VALUES (?,?)",
+    db.query("INSERT INTO loginDB (user_id, user_password) VALUES (?,?)",
     [userId, userPassword],
     (err,result) => {
         if(err) {
@@ -28,6 +27,7 @@ app.post('/api/login', (req,res) => {
         }
     } );
 })
+
 
 app.listen(PORT, () => {
     console.log(`running on ${PORT}`);
