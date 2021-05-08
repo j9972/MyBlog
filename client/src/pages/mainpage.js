@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function mainpage() {
+export default function MainPage() {
     return (
-        <div className="mainpage" >
-            hello my mainpage
+        <div className="MainPage" >
+            hello my MainPage
         </div>
     )
 }
