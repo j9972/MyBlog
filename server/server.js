@@ -13,17 +13,18 @@ const PORT = 3000;
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(express.json());
-app.use(cors({
-    origin: ["http://localhost:3001"],
-    methods: ["GET", "POST"],
-    credentials: true,
-}));
+// app.use(cors({
+//     origin: ["http://localhost:3001"],
+//     methods: ["GET", "POST"],
+//     credentials: true,
+// }));
+app.use(cors());
 
-app.use(cookieParser())
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(session({
-    key: "userId",
+    key: "userEmail",
     secret: "thisIsReallyImportantSoYouMustMakeItHardForNoOneKnowIt",
     resave: false,
     saveUninitialized: false,
@@ -32,18 +33,39 @@ app.use(session({
     },
 }))
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 app.post('/api/login', (req,res) => {
 
-    const userId = req.body.userId;
+    const userEmail = req.body.userEmail;
     const userPassword = req.body.userPassword;
     
-    db.query("INSERT INTO loginDB (user_id, user_password) VALUES (?,?)",
-    [userId, userPassword],
+    db.query("INSERT INTO loginDB (user_email, user_password) VALUES (?,?)",
+    [userEmail, userPassword],
     (err,result) => {
         if(err) {
             console.log(err, '0_err');
         } else {
             console.log(result, '0_success');
+        }
+    } );
+})
+
+app.post('/api/register', (req,res) => {
+
+    const userEmail = req.body.userEmail;
+    const userPassword = req.body.userPassword;
+    const userFullname = req.body.userFullName;
+    const userconfirmPassword = req.body.userconfirmPassword;
+    
+    db.query("INSERT INTO registerDB (user_fullname, user_email, user_password, user_confirmPassword) VALUES (?,?,?,?)",
+    [userFullname, userEmail, userPassword, userconfirmPassword],
+    (err,result) => {
+        if(err) {
+            console.log(err, '1_err');
+        } else {
+            console.log(result, '1_success');
         }
     } );
 })
