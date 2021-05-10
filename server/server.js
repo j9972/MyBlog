@@ -73,6 +73,7 @@ app.post('/api/register', (req,res,next) => {
                 req.session.flag = 1;
                 res.redirect('/');
             } else {
+
                 const hashPassword = bcrypt.hashSync(userPassword, saltRounds);
                 const hashConfirmPassword = bcrypt.hashSync(userconfirmPassword, saltRounds);
                 const sql = "INSERT into userDB (user_fullname, user_email, user_password, user_confirmPassword) VALUES (?,?,?,?)";
