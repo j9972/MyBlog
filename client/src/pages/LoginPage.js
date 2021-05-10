@@ -9,13 +9,13 @@ export default function LoginPage() {
     const [userFullName, setUserFullName] = useState("");
     const [userconfirmPassword, setUserConfirmPassword] = useState("");
 
-    const Login = () => {
-        Axios.post('http://localhost:3000/api/login', 
-        {
-            userEmail: userEmail,
-            userPassword: userPassword,
-        });
-    }
+    // const Login = () => {
+    //     Axios.post('http://localhost:3000/api/login', 
+    //     {
+    //         userEmail: userEmail,
+    //         userPassword: userPassword,
+    //     });
+    // }
 
     const register = () => {
         Axios.post('http://localhost:3000/api/register', 
@@ -36,7 +36,7 @@ export default function LoginPage() {
                     <label>Password</label>
                     <input type="password" placeholder="password" onChange={(e) => {setUserPassword(e.target.value)}}/>
 
-                    <button onClick={Login}>Login</button>
+                    <button onClick={register}>Login</button>
                 </div>
 
                 <div className="login_part2">
