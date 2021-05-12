@@ -1,5 +1,4 @@
 import React , { useState }from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Axios from 'axios';
 import "../App.css"
 
@@ -12,7 +11,7 @@ export default function RegisterPage() {
     const [userconfirmPassword, setUserConfirmPassword] = useState("");
 
     const register = () => {
-        Axios.post('http://localhost:3000/api/register', 
+        Axios.post('http://localhost:3000/register', 
         {
             userFullName: userFullName,
             userEmail: userEmail,

@@ -18,12 +18,12 @@ const jwt = require('jsonwebtoken');
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(express.json());
-app.use(cors({
-    origin: ["http://localhost:3005"],
-    methods: ["GET", "POST"],
-    credentials: true,
-}));
-//app.use(cors());
+// app.use(cors({
+//     origin: ["http://localhost:3000"],
+//     methods: ["GET", "POST"],
+//     credentials: true,
+// }));
+app.use(cors());
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -39,7 +39,7 @@ app.use(session({
     },
 }));
 
-app.post('/api/register', (req,res,next) => {
+app.post('/register', (req,res,next) => {
 
     const userEmail = req.body.userEmail;
     const userPassword = req.body.userPassword;
@@ -60,9 +60,9 @@ app.post('/api/register', (req,res,next) => {
 
                 const hashPassword = bcrypt.hashSync(userPassword, saltRounds);
                 const hashConfirmPassword = bcrypt.hashSync(userconfirmPassword, saltRounds);
-                const sql = "INSERT into userDB (user_fullname, user_email, user_password, user_confirmPassword) VALUES (?,?,?,?)";
+                const datasql = "INSERT into userDB (user_fullname, user_email, user_password, user_confirmPassword) VALUES (?,?,?,?)";
 
-                db.query(sql, [userFullname, userEmail, hashPassword, hashConfirmPassword],
+                db.query(datasql, [userFullname, userEmail, hashPassword, hashConfirmPassword],
                 (err, result, fields) => {
                     if(err) console.log(err);
                     req.session.flag = 2;
@@ -74,34 +74,75 @@ app.post('/api/register', (req,res,next) => {
         req.session.flag = 3;
         res.redirect('/');
     }
-});
 
-app.post('/api/login', function(req,res,next){
-
-    const userEmail = req.body.userEmail;
-    const userPassword = req.body.userPassword;
-  
-    const sql = 'select * from userDB where email = ?;';
-    
-    db.query(sql,[email], function(err,result, fields){
-        if(err) console.log(err);
-s
-        if(result.length && bcrypt.compareSync(userPassword, result[0].userPassword)){
-            req.session.userEmail = userEmail;
-            res.redirect('/home');
-        }else{
-            req.session.flag = 4;
-            res.redirect('/');
-        }
+    res.status(err.status || 500);
+    res.json({
+    message: err.message,
+    error: err
     });
 });
 
+app.post('/login', (req,res) => {
+    const userEmail = req.body.userEmail;
+    const userPassword = req.body.userPassword;
+
+    const sql = 'select * from userDB where user_email = ?;';
+
+    db.query(sql, [userEmail],
+    (err,result) => {
+        if(err) console.log(err);
+
+        if(result.length > 0) {
+            res.json({message:"hello user"});
+        } else {
+            res.json({message: "no user exists"});
+            res.redirect('/');
+        }
+    });
+})
+
+// app.post('/login', (req,res) => {
+
+//     const userEmail = req.body.userEmail;
+//     const userPassword = req.body.userPassword;
+
+//     const sql = 'select * from userDB where user_email = ?;';
+
+//     db.query(sql, [userEmail],
+//     (err,result) => {
+//         if(err) {
+//             res.send({err:err});
+//         } 
+//         if(result.length > 0) {
+//             bcrypt.compare(userPassword, result[0].userPassword, (error, response) => {
+//                 if(response) {
+//                     const id = result[0].id;
+//                     const token = jwt.sign({id}, "jwtSecret", {
+//                         expiresIn: 300,
+//                     })
+//                     req.session.user = result;
+
+//                     res.json({auth:true, token:token, result: result});
+//                 } else {
+//                     res.json({auth:false, message: "wrong username/password combination"});
+//                 }
+//             })
+//         } else {
+//             res.json({auth:false, message: "no user exists"});
+//             res.redirect('/');
+//         }       
+//     });
+// });
+
+
+
+
 //Route For Home Page
-app.get('/api/home', function(req, res, next){
+app.get('/', function(req, res, next){
     res.render('home', {message : 'Welcome, ' + req.session.userEmail});
 });
   
-app.get('/api/logout', function(req, res, next){
+app.get('/logout', function(req, res, next){
     if(req.session.userEmail){
         req.session.destroy();
         res.redirect('/');

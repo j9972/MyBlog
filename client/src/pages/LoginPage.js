@@ -7,10 +7,12 @@ export default function LoginPage() {
     const [userPassword, setUserPassword] = useState("");
 
     const Login = () => {
-        Axios.post('http://localhost:3000/api/login', 
+        Axios.post('http://localhost:3005/login', 
         {
             userEmail: userEmail,
             userPassword: userPassword,
+        }).then((res) => {
+            console.log(res);
         });
     }
 
