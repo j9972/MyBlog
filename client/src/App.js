@@ -12,20 +12,20 @@ function App() {
     <>
       <div className="navbar">
         <div className="links">
-          <a href="/">register Page</a> 
-          <a href="/home">Home Page</a> 
-          {/* homepage */}
-          <a href="/loginpage">Login Page</a> 
-          {/* loginpage */}
+          <a href="/">Home Page</a> 
+          <a href="/register">Register Page</a> 
+          {/* 회원가입 */}
+          <a href="/login">Login Page</a> 
+          {/* 로그인 */}
           <a href="/createpost">Create Post</a> 
           {/* post 쓰는 페이지 */}
         </div>
       </div>
 
       <Router>
-        <Route path="/" exact render={(props) => <RegisterPage />} /> 
-        <Route path="/homepage" exact render={(props) => <HomePage />} /> 
-        <Route path="/loginpage" exact render={(props) => <LoginPage />} /> 
+        <Route path="/" exact render={(props) => <HomePage />} /> 
+        <Route path="/register" exact render={(props) => <RegisterPage />} /> 
+        <Route path="/login" exact render={(props) => <LoginPage />} /> 
         <Route path="/createpost" render={(props) => <CreatePost />} />
         <Route path="/post/:postId" render={(props) => <Post />} />
       </Router>

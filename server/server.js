@@ -18,12 +18,12 @@ const jwt = require('jsonwebtoken');
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(express.json());
-// app.use(cors({
-//     origin: ["http://localhost:3001"],
-//     methods: ["GET", "POST"],
-//     credentials: true,
-// }));
-app.use(cors());
+app.use(cors({
+    origin: ["http://localhost:3005"],
+    methods: ["GET", "POST"],
+    credentials: true,
+}));
+//app.use(cors());
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -38,22 +38,6 @@ app.use(session({
         //cookie를 한달간 유지한다.
     },
 }));
-
-// app.post('/api/login', (req,res) => {
-
-//     const userEmail = req.body.userEmail;
-//     const userPassword = req.body.userPassword;
-    
-//     db.query("INSERT INTO userDB (user_email, user_password) VALUES (?,?)",
-//     [userEmail, userPassword],
-//     (err,result) => {
-//         if(err) {
-//             console.log(err, '0_err');
-//         } else {
-//             console.log(result, '0_success');
-//         }
-//     } );
-// })
 
 app.post('/api/register', (req,res,next) => {
 
@@ -101,7 +85,7 @@ app.post('/api/login', function(req,res,next){
     
     db.query(sql,[email], function(err,result, fields){
         if(err) console.log(err);
-
+s
         if(result.length && bcrypt.compareSync(userPassword, result[0].userPassword)){
             req.session.userEmail = userEmail;
             res.redirect('/home');
