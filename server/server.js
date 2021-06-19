@@ -3,7 +3,7 @@ const app = express();
 const PORT = 3001;
 const cors = require('cors');
 
-const db = require("./config/db");
+const db = require("./models");
 
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
