@@ -38,6 +38,9 @@ app.use(session({
 }));
 
 
-app.listen(PORT, () => {
-    console.log(`running on ${PORT}`);
+
+db.sequelize.sync().then(() => {
+    app.listen(PORT, () => {
+      console.log(`running on ${PORT}`);
+    });
 });
