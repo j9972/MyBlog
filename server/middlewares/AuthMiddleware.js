@@ -12,6 +12,7 @@ const validateToken = (req, res, next) => {
       return next();
     }
   } catch (err) {
+    console.log(err, 'here is the err')
     return res.json({ error: err });
   }
 };
