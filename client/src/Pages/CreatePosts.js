@@ -3,8 +3,10 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 function CreatePosts() {
+  let history = useHistory();
   const initialValues = {
     title: "",
     postText: "",
@@ -19,9 +21,10 @@ function CreatePosts() {
 
   const onSubmit = (data) => {
     axios.post("http://localhost:3001/posts", data).then((response) => {
-      console.log("IT WORKED");
+      history.push("/");
     });
   };
+
   return (
     <div className="createPostPage">
       <Formik
@@ -52,7 +55,7 @@ function CreatePosts() {
             autocomplete="off"
             id="inputCreatePost"
             name="username"
-            placeholder="(Ex. Jung...)"
+            placeholder="(Ex. John123...)"
           />
 
           <button type="submit"> Create Post</button>
