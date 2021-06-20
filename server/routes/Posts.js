@@ -1,9 +1,8 @@
-// 서버측 localhost url에 localhost:3001/posts 라고 ( posts 페이지 에서는 "/"이거여도 posts를 붙여줘야한다.)
+// 서버측 localhost url에 localhost:3001/posts 라고 ( posts 페이지 에서는 "/"이거여도 posts를 붙여줘야한다. )
 
 const express = require("express");
 const router = express.Router();
 const { Posts, Likes } = require("../models");
-
 const { validateToken } = require("../middlewares/AuthMiddleware");
 
 router.get("/", validateToken, async (req, res) => {
