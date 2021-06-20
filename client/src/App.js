@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Home from "./Pages/Home";
-import CreatePost from "./Pages/CreatePost";
+import CreatePost from "./Pages/CreatePosts";
 import Post from "./Pages/Post";
 import Registration from "./Pages/Registration";
 import Login from "./Pages/Login";
