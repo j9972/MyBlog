@@ -5,7 +5,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../helpers/AuthContext";
 
-function CreatePosts() {
+function CreatePost() {
   const { authState } = useContext(AuthContext);
 
   let history = useHistory();
@@ -66,4 +66,4 @@ function CreatePosts() {
   );
 }
 
-export default CreatePosts;
+export default CreatePost;

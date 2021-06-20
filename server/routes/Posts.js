@@ -30,6 +30,8 @@ router.post("/", validateToken, async (req, res) => {
   const post = req.body;
   post.username = req.user.username;
   post.UserId = req.user.id;
+  console.log('f_err');
+  console.log(Posts.UserId,'err');
   await Posts.create(post);
   res.json(post);
 });
