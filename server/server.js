@@ -13,18 +13,17 @@ const saltRounds = 10;
 
 const jwt = require('jsonwebtoken');
 
-app.use(bodyParser.urlencoded({extended:true}));
+//app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(express.json());
+app.use(cors());
 // app.use(cors({
 //     origin: ["http://localhost:3000"],
 //     methods: ["GET", "POST"],
 //     credentials: true,
 // }));
-app.use(cors());
 
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({extended:true}));
 
 app.use(session({
     key: "userEmail",
@@ -37,7 +36,8 @@ app.use(session({
     },
 }));
 
-
+const postRouter = require("./routes/Posts");
+app.use("/posts", postRouter);
 
 db.sequelize.sync().then(() => {
     app.listen(PORT, () => {
