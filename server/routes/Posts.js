@@ -30,8 +30,8 @@ router.post("/", validateToken, async (req, res) => {
     post.username = req.user.username;
     post.UserId = req.user.id;
     await Posts.create(post);
+    console.log(UserId);
     res.json(post);
-    //res.json(post.UserId);
 });
 
 router.put("/title", validateToken, async (req, res) => {

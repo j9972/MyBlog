@@ -25,16 +25,16 @@ app.use(cors());
 
 app.use(cookieParser());
 
-app.use(session({
-    key: "userEmail",
-    secret: "thisIsReallyImportantSoYouMustMakeItHardForNoOneKnowIt",
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        expires:60 * 60 * 24,
-        //cookie를 한달간 유지한다.
-    },
-}));
+// app.use(session({
+//     key: "userEmail",
+//     secret: "thisIsReallyImportantSoYouMustMakeItHardForNoOneKnowIt",
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//         expires:60 * 60 * 24,
+//         //cookie를 한달간 유지한다.
+//     },
+// }));
 
 // Routers
 const postRouter = require("./routes/Posts");
