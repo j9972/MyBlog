@@ -1,5 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+
 import Home from "./pages/Home";
 import CreatePost from "./pages/CreatePost";
 import Post from "./pages/Post";
@@ -10,6 +11,8 @@ import Profile from "./pages/Profile";
 import ChangePassword from "./pages/ChangePassword";
 
 import { AuthContext } from "./helpers/AuthContext";
+
+import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -19,6 +22,8 @@ function App() {
     id: 0,
     status: false,
   });
+
+  let history = useHistory();
 
   useEffect(() => {
     axios
@@ -43,8 +48,21 @@ function App() {
   const logout = () => {
     localStorage.removeItem("accessToken");
     setAuthState({ username: "", id: 0, status: false });
-  };
+    // if (localStorage.removeItem("accessToken")) {
+    //   setAuthState({ username: "", id: 0, status: false });
+    //   history.push("/login");
+    // }
 
+    // axios.put("http://localhost:3001/", {
+    //   headers: {accessToken : localStorage.removeItem("accessToken") },
+    // }).then((err) => {   
+    //   setAuthState({ username: "", id: 0, status: false });
+    //   history.push("/login");      
+    //   console.log(err);
+    // })
+
+  };
+  
   return (
     <div className="App">
       <AuthContext.Provider value={{ authState, setAuthState }}>
@@ -65,7 +83,7 @@ function App() {
             </div>
             <div className="loggedInContainer">
               <h1>{authState.username} </h1>
-              {authState.status && <button onClick={logout}> Logout</button>}
+              {authState.status && <button onClick={logout} > Logout</button>}
             </div>
           </div>
           <Switch>
