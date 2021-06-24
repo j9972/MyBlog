@@ -1,8 +1,8 @@
-import "./App.css";
-import "./CreatePost.css";
-import "./Login.css";
-import "./Post.css";
-import "./navbar.css";
+import "./cssFile/App.css";
+import "./cssFile/CreatePost.css";
+import "./cssFile/Login.css";
+import "./cssFile/Post.css";
+import "./cssFile/navbar.css";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 import Home from "./pages/Home";
