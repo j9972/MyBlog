@@ -1,4 +1,8 @@
 import "./App.css";
+import "./CreatePost.css";
+import "./Login.css";
+import "./Post.css";
+import "./navbar.css";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 import Home from "./pages/Home";
@@ -46,23 +50,19 @@ function App() {
   }, []);
 
   const logout = () => {
+    // session.removeItem or session.getItem은 리턴값이 없다. -> 조건문 x₩
     localStorage.removeItem("accessToken");
     setAuthState({ username: "", id: 0, status: false });
-    // if (localStorage.removeItem("accessToken")) {
-    //   setAuthState({ username: "", id: 0, status: false });
-    //   history.push("/login");
-    // }
 
-    // axios.put("http://localhost:3001/", {
-    //   headers: {accessToken : localStorage.removeItem("accessToken") },
-    // }).then((err) => {   
-    //   setAuthState({ username: "", id: 0, status: false });
-    //   history.push("/login");      
-    //   console.log(err);
-    // })
+    // sessionStorage.length; // 저장된 데이터의 갯수 리턴 이 방법 사용
+    if (localStorage.length === 0) {
+      history.push('/login');
+    }
+
+
 
   };
-  
+
   return (
     <div className="App">
       <AuthContext.Provider value={{ authState, setAuthState }}>
