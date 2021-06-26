@@ -10,6 +10,7 @@ function ChangePassword() {
       .put(
         "http://localhost:3001/auth/changepassword",
         {
+          // 첫번째 oldPassword는 그냥 key , 두번째 oldPassword는 value ( useState를 이용한 값 )
           oldPassword: oldPassword,
           newPassword: newPassword,
         },

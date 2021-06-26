@@ -47,6 +47,10 @@ function App() {
           });
         }
       });
+      // 아래 조건문은 확인 되지 않은 상황이니까 로그아웃을 통해 체크를 하게 만들기
+      if (!localStorage.getItem("accessToken")) {
+        history.push("/login");
+      }
   }, []);
 
   const logout = () => {
@@ -55,12 +59,9 @@ function App() {
     setAuthState({ username: "", id: 0, status: false });
 
     // sessionStorage.length; // 저장된 데이터의 갯수 리턴 이 방법 사용
-    if (localStorage.length === 0) {
-      history.push('/login');
-    }
-
-
-
+    // if (localStorage.length === 0) {
+    //   history.push('/login');
+    // }
   };
 
   return (

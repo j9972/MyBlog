@@ -19,6 +19,7 @@ function CreatePost() {
       history.push("/login");
     }
   }, []);
+  
   const validationSchema = Yup.object().shape({
     title: Yup.string().required("You must input a Title!"),
     postText: Yup.string().required(),
