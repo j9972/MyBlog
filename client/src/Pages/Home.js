@@ -23,6 +23,7 @@ function Home() {
           setListOfPosts(response.data.listOfPosts);
           setLikedPosts(
             response.data.likedPosts.map((like) => {
+              // PostID는 컬럼일거같음 
               return like.PostId;
             })
           );
@@ -40,8 +41,10 @@ function Home() {
       .then((response) => {
         setListOfPosts(
           listOfPosts.map((post) => {
+            // 모든 디비 컬럼에는 id가 있음 (다비 컬럼에 있는 하나의 데이터가 맞는지 체크)
             if (post.id === postId) {
               if (response.data.liked) {
+                // ...는 상위 데이터가 하위 데이터의 정보를 모두 갖음을 의미
                 return { ...post, Likes: [...post.Likes, 0] };
               } else {
                 const likesArray = post.Likes;

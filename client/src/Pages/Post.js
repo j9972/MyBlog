@@ -41,10 +41,13 @@ function Post() {
           console.log(response.data.error);
         } else {
           const commentToAdd = {
+            // 새로운 커멘트를 달면서 같이 명시되야 하는것을 보여줌.
             commentBody: newComment,
             username: response.data.username,
           };
+          // ...을 통해 기존에 있는 comment도 보여주고 새로운 댓글을 배열로 관리
           setComments([...comments, commentToAdd]);
+          // 초기화
           setNewComment("");
         }
       });
@@ -57,6 +60,7 @@ function Post() {
       })
       .then(() => {
         setComments(
+          // comments의 filter함수로 댓글을 지워줌
           comments.filter((val) => {
             return val.id != id;
           })
@@ -87,7 +91,7 @@ function Post() {
           headers: { accessToken: localStorage.getItem("accessToken") },
         }
       );
-
+      // 기존의 post들을 보여줘야 함. by ...
       setPostObject({ ...postObject, title: newTitle });
     } else {
       let newPostText = prompt("Enter New Text:");
@@ -132,6 +136,7 @@ function Post() {
           </div>
           <div className="footer">
             {postObject.username}
+            {/* 수정을 하려는 사람이랑 기존에 글을 적은 사람 ( 혹은 댓글을 적은 사람 ) 이 같은지 확인은 필수 */}
             {authState.username === postObject.username && (
               <button
                 onClick={() => {
