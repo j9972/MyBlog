@@ -8,6 +8,7 @@ const validateToken = (req, res, next) => {
   if (!accessToken) return res.json({ error: "User not logged in!" });
 
   try {
+    // 뇌피셜: accessToken(유저)를 json형식으로 validToken -> 이를 하나의 유저로 보고 -> 유저가 맞다면 next()로 유저 인증후 다음 절차로 넘어가게 만듬
     const validToken = verify(accessToken, "importantsecret");
     req.user = validToken;
     if (validToken) {

@@ -5,6 +5,7 @@ const { Posts, Likes } = require("../models");
 const { validateToken } = require("../middlewares/AuthMiddleware");
 
 router.get("/", validateToken, async (req, res) => {
+  // findall 매소드로 하고 include / exclude로 넣고 싶은거랑 빼고싶은거 뺄수있음
   const listOfPosts = await Posts.findAll({ include: [Likes] });
   const likedPosts = await Likes.findAll({ where: { UserId: req.user.id } });
   res.json({ listOfPosts: listOfPosts, likedPosts: likedPosts });

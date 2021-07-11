@@ -24,6 +24,7 @@ function App() {
   const [authState, setAuthState] = useState({
     username: "",
     id: 0,
+    // 로그인의 여부를 false로 나둬야 로그인 버튼을 눌렀을때 status의 boolean값의 변화를 볼 수 있음
     status: false,
   });
 
@@ -38,6 +39,8 @@ function App() {
       })
       .then((response) => {
         if (response.data.error) {
+          // if문의 ...authState는 useState에 쓴 기본값을 의미하고 err가 있을경우는 기본값으로 값을 유지 시킨다는 것
+          // -> 여기서 에러가 났을때 기본값을 유지하는 방법을 알 수 있음
           setAuthState({ ...authState, status: false });
         } else {
           setAuthState({
@@ -47,21 +50,14 @@ function App() {
           });
         }
       });
-      // 아래 조건문은 확인 되지 않은 상황이니까 로그아웃을 통해 체크를 하게 만들기
-      if (!localStorage.getItem("accessToken")) {
-        history.push("/login");
-      }
   }, []);
 
   const logout = () => {
     // session.removeItem or session.getItem은 리턴값이 없다. -> 조건문 x₩
+    // const accessToken = localStorage.getItem("accessToken") 
     localStorage.removeItem("accessToken");
     setAuthState({ username: "", id: 0, status: false });
-
-    // sessionStorage.length; // 저장된 데이터의 갯수 리턴 이 방법 사용
-    // if (localStorage.length === 0) {
-    //   history.push('/login');
-    // }
+    history.push('/login');
   };
 
   return (
