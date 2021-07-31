@@ -1,12 +1,13 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
+// import { useContext } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { AuthContext } from "../helpers/AuthContext";
+//import { AuthContext } from "../helpers/AuthContext";
 
 function CreatePost() {
-  const { authState } = useContext(AuthContext);
+  //const { authState } = useContext(AuthContext);
 
   let history = useHistory();
   const initialValues = {

@@ -23,6 +23,7 @@ function Login() {
           status: true,
         });
         history.push("/");
+        console.log(setAuthState);
       }
     });
   };
