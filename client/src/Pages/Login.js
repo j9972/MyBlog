@@ -23,10 +23,10 @@ function Login() {
           status: true,
         });
         history.push("/");
-        console.log(setAuthState);
-      }
+       }
     });
   };
+
   return (
     <div className="loginContainer">
       <label>Username:</label>

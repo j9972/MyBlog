@@ -16,7 +16,7 @@ import ChangePassword from "./pages/ChangePassword";
 
 import { AuthContext } from "./helpers/AuthContext";
 
-//import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -28,7 +28,7 @@ function App() {
     status: false,
   });
 
-  //let history = useHistory();
+  let history = useHistory();
 
   useEffect(() => {
     axios
@@ -54,7 +54,6 @@ function App() {
 
   const logout = () => {
     // session.removeItem or session.getItem은 리턴값이 없다. -> 조건문 x₩
-    // const accessToken = localStorage.getItem("accessToken") 
     localStorage.removeItem("accessToken");
     setAuthState({ username: "", id: 0, status: false });
     //history.push('/login');
