@@ -6,6 +6,14 @@ const validateToken = (req, res, next) => {
   const accessToken = req.header("accessToken");
 
   if (!accessToken) {
+    // verify(accessToken,'shhh', (err) => {
+    //   if(err) {
+    //     err = {
+    //       name : 'JSONWEBTOKENERROR',
+    //       messsage : 'jwt malformed'
+    //     }
+    //   }
+    // )}
     console.log("여기가 문제");
     return res.json({ error: "User not logged in!" });
   }

@@ -52,11 +52,18 @@ function App() {
       });
   }, []);
 
-  const logout = () => {
+  const logout = (data) => {
     // session.removeItem or session.getItem은 리턴값이 없다. -> 조건문 x₩
     localStorage.removeItem("accessToken");
     setAuthState({ username: "", id: 0, status: false });
-    //history.push('/login');
+  
+    // axios
+    // .post("http://localhost:3001/", data, {
+    //   headers: { accessToken: localStorage.removeItem("accessToken") },
+    // })
+    // .then((response) => {
+    //   history.push("/login");
+    // });
   };
 
   return (
@@ -80,6 +87,11 @@ function App() {
             <div className="loggedInContainer">
               <h1>{authState.username} </h1>
               {authState.status && <button onClick={logout} > Logout</button>}
+              {/* {authState.status && <button onClick={() => {
+                localStorage.removeItem("accessToken");
+                setAuthState({username: "", id: 0, status:false});
+                history.push("/login")
+              }} > Logout</button>} */}
             </div>
           </div>
           <Switch>
